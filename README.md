@@ -105,6 +105,7 @@ Supported helpers for maps:
 - [FromEntries / FromPairs](#fromentries-alias-frompairs)
 - [Invert](#invert)
 - [Assign (merge of maps)](#assign)
+- [AssignBy (merge of maps)](#assignby)
 - [MapKeys](#mapkeys)
 - [MapValues](#mapvalues)
 
@@ -814,6 +815,21 @@ mergedMaps := lo.Assign[string, int](
     map[string]int{"b": 3, "c": 4},
 )
 // map[string]int{"a": 1, "b": 3, "c": 4}
+```
+
+### AssignBy
+
+Merges multiple maps from left to right.
+
+```go
+mergedMaps := lo.AssignBy[string, int](
+    func(v1, v2) int {
+        return v1 + v2
+    },
+    map[string]int{"a": 1, "b": 2},
+    map[string]int{"b": 3, "c": 4},
+)
+// map[string]int{"a": 1, "b": 5, "c": 4}
 ```
 
 ### MapKeys
@@ -1976,3 +1992,4 @@ Give a ⭐️ if this project helped you!
 Copyright © 2022 [Samuel Berthe](https://github.com/samber).
 
 This project is [MIT](./LICENSE) licensed.
+
